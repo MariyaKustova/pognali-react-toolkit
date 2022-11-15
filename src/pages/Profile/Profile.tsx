@@ -40,8 +40,8 @@ const Profile = () => {
   const [editMode, setEditMode] = useState<boolean>(false);
 
   const refreshProfile = useCallback(() => {
-    const userId: string | number | undefined =
-      params.userId || currentUser?.userId;
+    const userId: number | undefined =
+      Number(params.userId) || currentUser?.userId;
 
     if (userId) {
       dispatch(getProfile(+userId));
