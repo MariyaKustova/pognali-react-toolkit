@@ -16,11 +16,12 @@ interface TextAreaProps {
   invalid?: boolean;
   isDirty?: boolean;
   isTouched?: boolean;
+  disabled?: boolean;
 }
 
 const TextArea = React.forwardRef(
   (props: TextAreaProps, ref: ForwardedRef<HTMLTextAreaElement>) => {
-    const { value, label, onChange, placeholder, error, invalid } = props;
+    const { value, label, onChange, placeholder, error, invalid, disabled = false } = props;
 
     return (
       <div className={s.TextArea__Wrapper}>
@@ -38,6 +39,7 @@ const TextArea = React.forwardRef(
           type="submit"
           className={s.TextArea__Button}
           label={label || "Add post"}
+          disabled={disabled || !value}
         />
       </div>
     );

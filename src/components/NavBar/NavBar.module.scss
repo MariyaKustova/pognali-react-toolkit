@@ -6,8 +6,6 @@
   padding: 30px;
   background-color: $mango;
   border-radius: 40px;
-  margin-left: 30px;
-  min-height: 750px;
 
   ul {
     list-style: none;
@@ -16,7 +14,7 @@
   }
 
   li:not(:last-child) {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
   }
 
   li:last-child {

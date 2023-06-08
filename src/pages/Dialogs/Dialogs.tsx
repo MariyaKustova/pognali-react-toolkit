@@ -1,42 +1,41 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import DialogItem from "./components/DialogItem/DialogItem";
-import MessageItem from "./components/MessageItem/MessageItem";
-import { Dialog, Message } from "./types";
 import DialogForm from "./components/DialogForm/DialogForm";
-import { AppDispatch, State } from "../../redux/reduxStore";
-import { getDialogsData, getMessagesData } from "../../redux/selectors.ts/dialogsSelectors";
+import DialogList from "./components/DialogList/DialogList";
+import { State } from "../../redux/reduxStore";
+import { getMessagesData } from "../../redux/selectors.ts/dialogsSelectors";
 import { setNewMessage } from "../../redux/slices/dialogsSlice";
 
-import s from "./Dialogs.module.scss";
+import s from './Dialogs.module.scss';
+
+
+const wss = new WebSocket(
+  "wss://social-network.samuraijs.com/handlers/ChatHandler.ashx"
+);
 
 const Dialogs = () => {
-  const dialogsData = useSelector((state: State) => getDialogsData(state));
+  const dispatch = useDispatch();
   const messagesData = useSelector((state: State) => getMessagesData(state));
-  const dispatch = useDispatch<AppDispatch>();
-  
-  const onSubmit = useCallback((values: {newMessage: string}) => {
-    values.newMessage.length && dispatch(setNewMessage(values.newMessage));
+
+  useEffect(() => {
+    const messageHandler = (evt: MessageEvent) => dispatch(setNewMessage(JSON.parse(evt.data)));
+    wss.addEventListener("message", messageHandler);
+
+    return () => wss.removeEventListener("message", messageHandler);
   }, [dispatch]);
+
+  const onSubmit = useCallback((value: string) => {
+    if (!value) {
+      return;
+    }
+    wss.send(value);    
+  }, []);  
 
   return (
     <div className={s.Dialogs}>
-      <div className={s.Dialogs__Wrapper}>
-        <ul className={s.Dialogs__List}>
-          {dialogsData.map((dialog: Dialog, index: number) => (
-            <DialogItem key={index} path={dialog.id} content={dialog.name} />
-          ))}
-        </ul>
-        <div>
-          <ul className={s.Dialogs__List}>
-            {messagesData.map((message: Message, index: number) => (
-              <MessageItem key={index} message={message.message} />
-            ))}
-          </ul>          
-        </div>
-      </div>
-      <DialogForm onSubmit={onSubmit} />
+      <DialogList className={s.Dialogs__List} messagesData={messagesData} />
+      <DialogForm className={s.Dialogs__Form} onSubmit={onSubmit} disabled={wss.readyState !== WebSocket.OPEN}/>
     </div>
   );
 };

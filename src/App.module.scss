@@ -6,12 +6,15 @@
     display: grid;
     grid-template-areas: "nav content";
     grid-template-columns: 3fr 9fr;
+    gap: 30px;
     @include wrapper;
+    padding: 30px;
+    height: calc(100vh - 150px);
   }
 
   &__Content {
     grid-area: content;
-    padding: 0 30px;
     position: relative;
+    height: inherit;
   }
 }
