@@ -1,79 +1,82 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  Dispatch,
+  PayloadAction,
+} from "@reduxjs/toolkit";
+import { dialogsAPI, MessageItem } from "../API/dialogs";
+import { AppDispatch } from "../reduxStore";
+import { setAppErrors } from "./appSlice";
 
-export interface DialogsState {
-  dialogsData: { id: string; name: string }[];
-  messagesData: { id: string; message: string }[];
+export interface DialogState {
+  dialogMessages: MessageItem[];
 }
 
-const initialState: DialogsState = {
-  dialogsData: [
-    {
-      id: "1",
-      name: "Dima",
-    },
-    {
-      id: "2",
-      name: "Anna",
-    },
-    {
-      id: "3",
-      name: "Sveta",
-    },
-    {
-      id: "4",
-      name: "Ann",
-    },
-    {
-      id: "5",
-      name: "Alex",
-    },
-    {
-      id: "6",
-      name: "Antony",
-    },
-  ],
-  messagesData: [
-    {
-      id: "1",
-      message: "Hi!",
-    },
-    {
-      id: "2",
-      message: "WOW",
-    },
-    {
-      id: "3",
-      message: "Hi!!!",
-    },
-    {
-      id: "4",
-      message: "Hello!",
-    },
-    {
-      id: "5",
-      message: "Good morning!",
-    },
-    {
-      id: "6",
-      message: "Rrrr...",
-    },
-  ],
+const initialState: DialogState = { dialogMessages: [] };
+
+let newMesageHandler: ((messages: MessageItem[]) => void) | null = null;
+
+const newMesageHandlerCreator = (dispatch: Dispatch) => {
+  if (!newMesageHandler) {
+    newMesageHandler = (messages: MessageItem[]) =>
+      dispatch(dialogsSlice.actions.messagesReceived(messages));
+  }
+  return newMesageHandler;
 };
+
+export const startMessagesListening = createAsyncThunk<
+  void,
+  void,
+  { dispatch: AppDispatch }
+>("dialogs/startMessagesListening", async function (_, { dispatch }) {
+  try {
+    dialogsAPI.openConnection();
+    dialogsAPI.subscribe(newMesageHandlerCreator(dispatch));
+  } catch (error) {
+    if (error instanceof Error) {
+      dispatch(setAppErrors(error.message));
+    }
+  }
+});
+
+export const stopMessagesListening = createAsyncThunk<
+  void,
+  void,
+  { dispatch: AppDispatch }
+>("dialogs/stopMessagesListening", async function (_, { dispatch }) {
+  try {
+    dialogsAPI.unsubscribe(newMesageHandlerCreator(dispatch));
+    dialogsAPI.closeConnection();
+  } catch (error) {
+    if (error instanceof Error) {
+      dispatch(setAppErrors(error.message));
+    }
+  }
+});
+export const sendMessage = createAsyncThunk<
+  void,
+  string,
+  { dispatch: AppDispatch }
+>("dialogs/sendMessage", async function (message, { dispatch }) {
+  try {
+    dialogsAPI.sendMessage(message);
+  } catch (error) {
+    if (error instanceof Error) {
+      dispatch(setAppErrors(error.message));
+    }
+  }
+});
 
 const dialogsSlice = createSlice({
   name: "dialogs",
   initialState,
   reducers: {
-    setNewMessage: (state, action: PayloadAction<string>) => {
-      const newMessage = {
-        id: "7",
-        message: action.payload,
-      };
-      state.messagesData.push(newMessage);
+    messagesReceived: (state, action: PayloadAction<MessageItem[]>) => {
+      console.log(state.dialogMessages);
+
+      state.dialogMessages.push(...action.payload);
     },
   },
 });
-
-export const { setNewMessage } = dialogsSlice.actions;
 
 export default dialogsSlice.reducer;

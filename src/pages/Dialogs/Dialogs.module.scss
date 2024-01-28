@@ -1,19 +1,31 @@
-@import '../../assets/BaseStyles/Mixins.module.scss';
-@import '../../assets/BaseStyles/variables.module.scss';
+@import "../../assets/BaseStyles/Mixins.module.scss";
+@import "../../assets/BaseStyles/Variables.module.scss";
 
 .Dialogs {
-  &__Wrapper {
-    display: grid;
-    grid-template-columns: 3fr 9fr;
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  box-sizing: border-box;
+  padding-bottom: 170px;
+  position: relative;
+}
+
+.Dialogs__List {
+  @include list-reset;
+  overflow: overlay;
+
+  &::-webkit-scrollbar {
+    @include scrollbar;
   }
-  
-  &__List {
-    @include list-reset;
-    margin-right: 10px;
-  
-    li {
-      margin-bottom: 10px;
-    }
+
+  &::-webkit-scrollbar-thumb {
+    @include scrollbar-thumb;
   }
 }
 
+.Dialogs__Form {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+}

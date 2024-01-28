@@ -11,6 +11,14 @@
   @include light-text;
   color: $light-gold;
 
+  &::-webkit-scrollbar {
+    @include scrollbar;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @include scrollbar-thumb;
+  }
+
   &:hover,
   &:focus {
     border: 2px solid $mango;

@@ -8,7 +8,9 @@ interface DialogFormValues {
   newMessage: string;
 }
 interface DialogFormProps {
-  onSubmit: (values: DialogFormValues) => void;
+  onSubmit: (value: string) => void;
+  disabled?: boolean;
+  className?: string;
 }
 const checkMessageLength = (
   values: DialogFormValues,
@@ -31,7 +33,7 @@ const defaultValues = {
   newMessage: "",
 };
 
-const DialogForm: FC<DialogFormProps> = ({ onSubmit }) => {
+const DialogForm: FC<DialogFormProps> = ({ onSubmit, disabled, className }) => {
   const { control, handleSubmit, reset } = useForm({
     defaultValues,
     resolver: validateMessage,
@@ -39,14 +41,14 @@ const DialogForm: FC<DialogFormProps> = ({ onSubmit }) => {
 
   const onHandleSubmit = useCallback(
     (values: DialogFormValues) => {
-      onSubmit(values);
+      onSubmit(values.newMessage);
       reset(defaultValues);
     },
     [onSubmit, reset]
   );
 
   return (
-    <form onSubmit={handleSubmit(onHandleSubmit)}>
+    <form className={className} onSubmit={handleSubmit(onHandleSubmit)}>
       <Controller
         name={"newMessage"}
         control={control}
@@ -57,6 +59,7 @@ const DialogForm: FC<DialogFormProps> = ({ onSubmit }) => {
               {...fieldState}
               label="Add message"
               placeholder="Add new message"
+              disabled={disabled}
             />
           );
         }}
