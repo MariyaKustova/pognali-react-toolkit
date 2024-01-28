@@ -1,27 +1,29 @@
 import { FC, useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 import DialogItem from "../DialogItem/DialogItem";
-import { MessageItem } from "../../../../redux/slices/dialogsSlice";
+import { State } from "../../../../redux/reduxStore";
+import { getMessagesData } from "../../../../redux/selectors.ts/dialogsSelectors";
 
 import s from "./DialogsList.module.scss";
 
 interface DialogListProps {
-  messagesData: MessageItem[];
-  className? : string;
+  className?: string;
 }
 
-const DialogList: FC<DialogListProps> = ({ messagesData, className }) => {
+const DialogList: FC<DialogListProps> = ({ className }) => {
+  const messagesData = useSelector((state: State) => getMessagesData(state));
   const [isAutoScroll, setIsAutoScroll] = useState<boolean>(true);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isAutoScroll) {
       scrollRef.current?.scrollIntoView(true);
-    }    
-  }, [messagesData, isAutoScroll])
+    }
+  }, [isAutoScroll]);
 
   const scrollHandler = (event: React.UIEvent<HTMLDivElement>): void => {
-    const {scrollHeight, scrollTop, clientHeight} = event.currentTarget;
+    const { scrollHeight, scrollTop, clientHeight } = event.currentTarget;
 
     if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
       if (!isAutoScroll) {
@@ -29,9 +31,9 @@ const DialogList: FC<DialogListProps> = ({ messagesData, className }) => {
       } else {
         setIsAutoScroll(false);
       }
-    } 
-  }
-  
+    }
+  };
+
   return (
     <div className={className} onScroll={scrollHandler}>
       {messagesData.length ? (

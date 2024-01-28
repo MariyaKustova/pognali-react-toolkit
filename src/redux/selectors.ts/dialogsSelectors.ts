@@ -1,3 +1,3 @@
 import { State } from "../reduxStore";
 
-export const getMessagesData = (state: State) => state.dialogs;
+export const getMessagesData = (state: State) => state.dialogs.dialogMessages;
