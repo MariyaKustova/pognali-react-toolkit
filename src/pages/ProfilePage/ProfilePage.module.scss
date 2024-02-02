@@ -1,0 +1,7 @@
+@import "../../shared/assets/index.module.scss";
+
+.ProfilePage {
+  @include cardDesign;
+  justify-content: flex-start;
+  position: relative;
+}

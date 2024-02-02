@@ -1,0 +1,20 @@
+@import "../../../../shared/assets/index.module.scss";
+
+.Post {
+  @include light-text();
+
+  &__Content {
+    display: flex;
+    align-items: center;
+  }
+
+  &__Img {
+    border-radius: 30px;
+    width: 40px;
+    margin-right: 8px;
+  }
+
+  &__Like {
+    font-size: 18px;
+  }
+}

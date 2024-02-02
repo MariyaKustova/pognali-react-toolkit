@@ -1,0 +1,33 @@
+@import "../../shared/assets/index.module.scss";
+
+.NavBar {
+  grid-area: nav;
+  padding: 30px;
+  background-color: $mango;
+  border-radius: 40px;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li:not(:last-child) {
+    margin-bottom: 5px;
+  }
+
+  li:last-child {
+    margin-top: 40px;
+  }
+
+  &__Link,
+  &__ActiveLink {
+    @include link;
+    font-family: "BloggerSans-Medium";
+    color: $dark-blue-grey;
+
+    &:hover {
+      color: $light-gold;
+    }
+  }
+}

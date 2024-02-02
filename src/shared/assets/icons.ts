@@ -1,0 +1,10 @@
+export { default as EditIcon } from "./images/edit-icon.svg";
+export { default as FbIcon } from "./images/fb-icon.svg";
+export { default as GithubIcon } from "./images/github-icon.svg";
+export { default as InstagramIcon } from "./images/instagram-icon.svg";
+export { default as MainlinkIcon } from "./images/mainlink-icon.svg";
+export { default as TwitterIcon } from "./images/twitter-icon.svg";
+export { default as UserIcon } from "./images/user-icon.svg";
+export { default as VkIcon } from "./images/vk-icon.svg";
+export { default as WebIcon } from "./images/web-icon.svg";
+export { default as YoutubeIcon } from "./images/youtube-icon.svg";

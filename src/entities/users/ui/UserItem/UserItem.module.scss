@@ -1,0 +1,57 @@
+@import "../../../../shared/assets/index.module.scss";
+
+.UserItem {
+  @include cardDesign;
+
+  &:hover {
+    background-color: $dark-blue-grey;
+
+    &__Name {
+      text-decoration: underline;
+    }
+  }
+
+  &__ShortInfo {
+    display: flex;
+    align-items: center;
+  }
+
+  &__Wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    padding-bottom: 24px;
+    position: relative;
+  }
+
+  &__Img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+  }
+
+  &__Name {
+    max-width: 345px;
+    margin-top: 10px;
+    @include medium-text();
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__Text {
+    max-width: 345px;
+    margin: 10px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__Location {
+    min-width: 150px;
+  }
+
+  &__Link {
+    color: $light-gold;
+    text-decoration: none;
+    width: 100%;
+  }
+}

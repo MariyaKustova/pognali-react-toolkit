@@ -1,0 +1,34 @@
+@import "../../../../shared/assets/index.module.scss";
+
+.DialogsList {
+  overflow: overlay;
+
+  &::-webkit-scrollbar {
+    @include scrollbar;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @include scrollbar-thumb;
+  }
+
+  &__List {
+    @include list-reset;
+    margin-right: 10px;
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__WrapperText {
+    height: 75%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__NotMessageText {
+    width: 100%;
+    text-align: center;
+    opacity: 0.5;
+  }
+}

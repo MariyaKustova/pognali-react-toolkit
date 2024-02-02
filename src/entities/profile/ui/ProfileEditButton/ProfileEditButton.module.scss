@@ -1,0 +1,40 @@
+@import "../../../../shared/assets/index.module.scss";
+
+.ProfileEditButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  &__ButtonEdit {
+    background-color: $light-gold;
+    border-radius: 50%;
+    border: none;
+    width: 30px;
+    height: 30px;
+
+    &:hover {
+      background-color: $mango;
+    }
+
+    &:hover + div {
+      display: block;
+    }
+  }
+
+  &__IconEdit {
+    width: 15px;
+    position: absolute;
+    top: 12px;
+    left: 8px;
+  }
+
+  &__Tooltip {
+    position: absolute;
+    display: none;
+    top: -35px;
+    right: -5px;
+    font-size: 16px;
+    width: 100px;
+    background-color: $dark-blue-grey;
+  }
+}

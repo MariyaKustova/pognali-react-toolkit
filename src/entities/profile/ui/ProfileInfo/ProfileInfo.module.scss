@@ -1,0 +1,81 @@
+@import "../../../../shared/assets/index.module.scss";
+
+.ProfileInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  &__ShortInfo {
+    h2 {
+      margin-bottom: 5px;
+    }
+
+    p {
+      @include small-text;
+      margin-top: 5px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__Header,
+  &__Job,
+  &__Info {
+    display: flex;
+  }
+
+  &__Wrapper {
+    flex-grow: 1;
+    min-height: 300px;
+  }
+
+  &__ShortInfo,
+  &__Job,
+  &__About,
+  &__Contacts {
+    width: calc((100% - 20px) / 2);
+    min-height: 150px;
+    box-sizing: border-box;
+  }
+
+  &__Job {
+    padding-right: 35px;
+  }
+
+  &__ShortInfo,
+  &__About {
+    margin-right: 20px;
+  }
+
+  &__JobIcon {
+    width: 75px;
+    height: 75px;
+    margin-right: 10px;
+  }
+
+  &__About {
+    h4 {
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__Contacts {
+    display: flex;
+    justify-content: flex-end;
+
+    ul {
+      @include list-reset;
+      display: flex;
+      margin-top: auto;
+
+      li:not(:last-child) {
+        margin-right: 7px;
+      }
+    }
+  }
+}

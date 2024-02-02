@@ -1,0 +1,5 @@
+@import "../../../../shared/assets/index.module.scss";
+
+.PostsList {
+  @include list-reset;
+}

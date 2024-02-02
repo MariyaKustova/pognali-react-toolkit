@@ -1,0 +1,24 @@
+@import "../../../../shared/assets/index.module.scss";
+
+.FriendsSection {
+  @include light-text-link;
+  color: $dark-blue-grey;
+
+  &__ActiveLink {
+    text-decoration: underline;
+  }
+
+  &__Title {
+    @include light-text-link;
+    margin-bottom: 10px;
+  }
+
+  &__TitleNotActive {
+    color: $dark-blue-grey-70;
+  }
+
+  &__Wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+}
