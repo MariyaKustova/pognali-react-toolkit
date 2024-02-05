@@ -1,4 +1,4 @@
-@import '../../assets/BaseStyles/Variables.module.scss';
+@import "../../shared/assets/index.module.scss";
 
 .MainPage {
   &__Header {
@@ -6,13 +6,12 @@
     min-height: 750px;
     position: relative;
 
-    @media (min-resolution: $retina-dpi),
-    (min-resolution: $retina-dppx) {
+    @media (min-resolution: $retina-dpi), (min-resolution: $retina-dppx) {
       background-image: url(../../../public/img/globe-back-desktop@2x.jpg);
     }
 
     &::before {
-      content: '';
+      content: "";
       display: block;
       width: 431px;
       height: 640px;
@@ -23,8 +22,7 @@
       bottom: 0;
       left: 50%;
 
-      @media (min-resolution: $retina-dpi),
-      (min-resolution: $retina-dppx) {
+      @media (min-resolution: $retina-dpi), (min-resolution: $retina-dppx) {
         background-image: url(../../../public/img/traveller-illustration-desktop@2x.png);
       }
     }

@@ -1,0 +1,17 @@
+@import "../../shared/assets/index.module.scss";
+
+.DialogsPage {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  box-sizing: border-box;
+  padding-bottom: 170px;
+  position: relative;
+}
+
+.DialogsPage__Form {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+}

@@ -1,0 +1,34 @@
+@import "../../shared/assets/index.module.scss";
+
+.Header {
+  position: sticky;
+  top: 0;
+  background-color: $dark-blue-grey;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  z-index: 1;
+
+  &__Wrapper {
+    @include wrapper;
+    padding: 40px 30px 10px;
+    display: flex;
+    justify-content: space-between;
+
+    &__Text,
+    a {
+      @include link;
+      font-size: 24px;
+      color: $white;
+
+      &:hover,
+      &:focus {
+        color: $mango;
+      }
+    }
+  }
+
+  &__rightContent {
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,0 +1,14 @@
+@import "../../shared/assets/index.module.scss";
+
+.LogoutBtn {
+  @include light-text;
+  color: $white;
+  background-color: transparent;
+  border: none;
+  margin-right: 15px;
+
+  &:hover,
+  &:focus {
+    color: $mango;
+  }
+}

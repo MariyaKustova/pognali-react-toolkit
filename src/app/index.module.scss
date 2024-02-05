@@ -1,0 +1,32 @@
+@import "../shared/assets/index.module.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "BloggerSans", "Arial", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color: $white;
+  min-width: $mobile-width;
+  position: relative;
+  background-color: $dark-two;
+}
+
+.App {
+  &__Wrapper {
+    display: grid;
+    grid-template-areas: "nav content";
+    grid-template-columns: 3fr 9fr;
+    gap: 30px;
+    @include wrapper;
+    padding: 30px;
+    height: calc(100vh - 150px);
+  }
+
+  &__Content {
+    grid-area: content;
+    position: relative;
+    height: inherit;
+  }
+}
