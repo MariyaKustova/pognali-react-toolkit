@@ -1,0 +1,10 @@
+.OAuthLoginForm {
+  &__buttonWrapper {
+    display: flex;
+  }
+
+  &__button {
+    width: fit-content;
+    margin-left: auto;
+  }
+}

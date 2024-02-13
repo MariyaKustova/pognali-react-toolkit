@@ -10,3 +10,4 @@ export { default as Pagination } from "./Pagination";
 export { default as ProtectedRoute } from "./ProtectedRoute";
 export { default as SmartImgLink } from "./SmartImgLink";
 export { default as TextArea } from "./TextArea";
+export { default as ProfileImg } from "./ProfileImg";

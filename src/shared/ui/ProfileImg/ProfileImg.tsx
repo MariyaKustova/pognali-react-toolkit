@@ -4,7 +4,7 @@ import { UserIcon } from "shared/assets";
 import s from "./ProfileImg.module.scss";
 
 interface ProfileImgProps {
-  photoSrc: string;
+  photoSrc?: string;
   editImgBtn?: React.ReactNode;
 }
 

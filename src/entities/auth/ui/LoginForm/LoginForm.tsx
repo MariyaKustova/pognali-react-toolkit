@@ -2,13 +2,14 @@ import React, { useCallback } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { Checkbox, Button } from "shared/ui";
+import { Checkbox } from "shared/ui";
 import { useStoreDispatch, useStoreSelector } from "shared/lib/utils";
-import { FieldNames, initialValues, schema } from "../../lib/constants";
-import { LoginFormValues } from "../../model/types";
+import { initialValues, schema } from "../../lib/constants";
+import { FieldNames, LoginFormValues } from "../../model/types";
 import FormController from "../FormController";
 import { loginUser } from "../../model/securitySlice";
 import { getCaptcha } from "../../model/securitySelectors";
+import { LoginBtn } from "features";
 
 import s from "./LoginForm.module.scss";
 
@@ -51,9 +52,7 @@ const LoginForm = () => {
           <FormController name={FieldNames.CAPTCHA} control={control} />
         </>
       )}
-      <div className={s.LoginForm__buttonWrapper}>
-        <Button label="Login" type="submit" className={s.LoginForm__button} />
-      </div>
+      <LoginBtn />
     </form>
   );
 };

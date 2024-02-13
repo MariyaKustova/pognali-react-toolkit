@@ -1,5 +1,4 @@
 import { UserProfile } from "entities/profile/model/types";
-import { FieldNames } from "../lib/constants";
 import { Nullable } from "shared/model/types";
 
 export interface Auth {
@@ -12,6 +11,13 @@ export interface Auth {
 export interface AuthState {
   auth: Auth;
   currentUser: Nullable<UserProfile>;
+}
+
+export enum FieldNames {
+  LOGIN = "login",
+  PASSWORD = "password",
+  REMEMBER_ME = "rememberMe",
+  CAPTCHA = "captcha",
 }
 
 export interface LoginFormValues {

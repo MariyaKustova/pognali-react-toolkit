@@ -1,5 +1,10 @@
 export type Nullable<T> = null | T;
 
+export enum RESPONSE_STATUS {
+  SUCCESS = "success",
+  FAILURE = "fail",
+}
+
 export interface User {
   name: string;
   id: number;
