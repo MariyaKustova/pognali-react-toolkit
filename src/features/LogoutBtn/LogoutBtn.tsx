@@ -1,15 +1,20 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { logoutUser } from "entities/auth";
+import { logoutOAuthUser } from "entities/oAuth";
 import { useStoreDispatch } from "shared/lib/utils";
 
 import s from "./LogoutBtn.module.scss";
 
-const LogoutBtn = () => {
+interface LogoutBtnProps {
+  fromGoogle?: boolean;
+}
+
+const LogoutBtn: FC<LogoutBtnProps> = ({ fromGoogle }) => {
   const dispatch = useStoreDispatch();
 
   const onClick = () => {
-    dispatch(logoutUser());
+    fromGoogle ? dispatch(logoutOAuthUser()) : dispatch(logoutUser());
   };
 
   return (

@@ -1,11 +1,5 @@
 import * as yup from "yup";
-
-export enum FieldNames {
-  LOGIN = "login",
-  PASSWORD = "password",
-  REMEMBER_ME = "rememberMe",
-  CAPTCHA = "captcha",
-}
+import { FieldNames } from "../model/types";
 
 export const initialValues = {
   [FieldNames.LOGIN]: "",

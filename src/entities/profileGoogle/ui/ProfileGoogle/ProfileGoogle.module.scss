@@ -1,0 +1,32 @@
+@import "../../../../shared/assets/index.module.scss";
+
+.ProfileGoogle {
+  @include light-text;
+
+  &__Container {
+    @include cardDesign;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  &__Row {
+    display: flex;
+    margin-bottom: 8px;
+  }
+
+  &__Label {
+    width: 100px;
+    color: $mango;
+  }
+
+  &__Value {
+    flex-grow: 1;
+  }
+
+  &__Wrapper {
+    display: flex;
+    justify-content: end;
+  }
+}

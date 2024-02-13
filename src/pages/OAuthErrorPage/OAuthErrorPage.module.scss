@@ -1,0 +1,13 @@
+@import "../../shared/assets/index.module.scss";
+
+.OAuthErrorPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  &__Text {
+    @include bold-text;
+    text-align: center;
+  }
+}

@@ -2,12 +2,11 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { ROUTE_PATH } from "shared/lib/constants";
-import { ErrorAlert, Loader } from "shared/ui";
+import { ErrorAlert, Loader, ProfileImg } from "shared/ui";
 import { PostForm, PostsList } from "entities/posts";
 import {
   ProfileEditButton,
   ProfileFormValues,
-  ProfileImg,
   ProfileInfo,
   ProfileInfoForm,
   getProfile,
